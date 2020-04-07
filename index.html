@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -133,7 +133,7 @@
 
 
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -142,7 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -305,7 +305,7 @@
             <h1 id="后量子安全秘钥交换协议SIDH简介"><a href="#后量子安全秘钥交换协议SIDH简介" class="headerlink" title="后量子安全秘钥交换协议SIDH简介"></a>后量子安全秘钥交换协议SIDH简介</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。</p>
 <h2 id="Diffie-Hellman算法"><a href="#Diffie-Hellman算法" class="headerlink" title="Diffie-Hellman算法"></a>Diffie-Hellman算法</h2><p>目前应用最广泛的秘钥交换协议是Diffie-Hellman (DH) 算法，其思路如图所示，任何一本密码学教材都有具体过程的描述，本文不再赘述。如果不懂DH算法，也没必要阅读本文。</p>
 <p><img src="../images/DH0.png" alt="Diffie-Hellman基本协议"></p>
-<p>一般来说，DH算法中使用的群$G$可以是$Z_p^*$乘法群，也可以使用椭圆曲线群。DH算法的安全性建立在离散对数问题(DLP)的难解性，该算法不能抗量子攻击也在于DLP有多项式时间的量子算法。因此，在后量子时代，必须使用新的构造。</p>
+<p>一般来说，DH算法中使用的群<script type="math/tex">G</script>可以是<script type="math/tex">Z_p^*</script>乘法群，也可以使用椭圆曲线群。DH算法的安全性建立在离散对数问题(DLP)的难解性，该算法不能抗量子攻击也在于DLP有多项式时间的量子算法。因此，在后量子时代，必须使用新的构造。</p>
 <h2 id="构造新型Diffie-Hellman算法的思路"><a href="#构造新型Diffie-Hellman算法的思路" class="headerlink" title="构造新型Diffie-Hellman算法的思路"></a>构造新型Diffie-Hellman算法的思路</h2><p>构造新算法的思路往往源于对现有算法的高度抽象。DH算法可以抽象为这样一种过程：</p>
 <p>Alice的秘密是$a$，她的计算先做→，得到$g^a$，再做↓，得到$g^{ab}$。而Bob的秘密是$b$，他先做↓，再做→。殊途同归得到$g^{ab}$。进一步扩展这种思路，我们寻求这样一种群结构，如下图所示：</p>
 <p><img src="../images/DH1.png" alt="抽象Diffie-Hellman"></p>
@@ -315,7 +315,7 @@
 </li>
 <li><p>给定$G$、$G/A$ (或$G/B$)，求$A$ (或$B$) 是困难性问题，即不存在量子多项式时间算法。</p>
 <p><img src="../images/SIDH-1.png" alt="基本SIDH"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2></li>
+<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2></li>
 </ul>
 <p>基本上SIDH算法就是满足此要求的一种构造。再次强调，不要被上面的例子误导，这里的$G$、$A$、$G/A$ 等表达都是抽象结构的符号表达，并没有明确含义。以下的SIDH构造描述就是要给出其相对具体的构造。</p>
 <h2 id="SIDH构造的简化版本"><a href="#SIDH构造的简化版本" class="headerlink" title="SIDH构造的简化版本"></a>SIDH构造的简化版本</h2><p>SIDH的基本代数结构是超奇异椭圆曲线群$E$和超奇异同源（Isogeny）$\phi$ 。基本思路如下图所示：</p>
@@ -357,22 +357,12 @@
 <p>最后冲顶的一步，计算秘密值。首先要明确，$E_{BA} \ne E_{AB}$ ！其次，$E_{BA}$ 同构于$E_{AB}$ 。然后利用同构曲线的一个属性：所有同构曲线的 J-Invariant值​相同。于是Alice和Bob分别计算$J(E_{BA})$和 $J(E_{AB})$ ，这就是他们共同拥有的秘密。J-Invariant的计算定义可在标准教科书中找到，本文把它视为黑盒子使用。</p>
 <h2 id="Sage代码展示SIDH的思路"><a href="#Sage代码展示SIDH的思路" class="headerlink" title="Sage代码展示SIDH的思路"></a>Sage代码展示SIDH的思路</h2><p>以下展示在Sage下可运行的SIDH代码片段，通过代码运行让读者强化对以上算法描述的理解。</p>
 <h3 id="参数设置"><a href="#参数设置" class="headerlink" title="参数设置"></a>参数设置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选取一条在素域k上的超奇异椭圆曲线</span></span><br><span class="line">lA, lB = <span class="number">2</span>, <span class="number">3</span></span><br><span class="line">eA, eB = <span class="number">6</span>, <span class="number">7</span></span><br><span class="line">p = lA ^ eA * lB ^ eB - <span class="number">1</span></span><br><span class="line"><span class="keyword">assert</span> p.is_prime()</span><br><span class="line"><span class="keyword">assert</span> p % <span class="number">4</span> == <span class="number">3</span></span><br><span class="line">k = GF(p) <span class="comment"># 注意，这里并不是标准做法，只是因为Sage的局限不得已;</span></span><br><span class="line">E = EllipticCurve(k, [<span class="number">1</span>, <span class="number">0</span>]) <span class="comment">#选取曲线</span></span><br><span class="line">E</span><br><span class="line">E.is_supersingular()</span><br><span class="line"><span class="keyword">print</span> E.j_invariant()</span><br><span class="line"></span><br><span class="line"><span class="comment">#选取四个随机点作为公共参数</span></span><br><span class="line">points = []</span><br><span class="line"><span class="keyword">while</span> len(points) != <span class="number">4</span>:</span><br><span class="line">    p = E.random_point()</span><br><span class="line">    <span class="keyword">if</span> p <span class="keyword">not</span> <span class="keyword">in</span> points:</span><br><span class="line">        points.append(p)</span><br><span class="line">PA, PB, QA, QB = points</span><br><span class="line">PA, PB, QA, QB</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="Alice-的操作"><a href="#Alice-的操作" class="headerlink" title="Alice 的操作"></a>Alice 的操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Alice选择两个随机数并计算自己的秘密值RA</span></span><br><span class="line"><span class="comment">#RA定义了phi_A的kernel</span></span><br><span class="line">sA, tA = <span class="number">123</span>, <span class="number">525</span></span><br><span class="line">RA = sA * PA + tA * QA</span><br><span class="line"><span class="keyword">print</span> RA</span><br><span class="line"></span><br><span class="line"><span class="comment">#phiA就是同源也是群同态</span></span><br><span class="line">phiA = E.isogeny(RA)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Alice的公共信息EA</span></span><br><span class="line">EA = phiA.codomain()</span><br><span class="line"><span class="keyword">print</span> E.is_isogenous(EA)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Alice发送以下值给Bob</span></span><br><span class="line">EA, phiA_PB, phiA_QB = EA, phiA(PB), phiA(QB)</span><br><span class="line">EA, phiA_PB, phiA_QB</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="Bob的操作-1"><a href="#Bob的操作-1" class="headerlink" title="Bob的操作"></a>Bob的操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Bob的工作类似</span></span><br><span class="line">sB, tB = <span class="number">812</span>, <span class="number">580</span></span><br><span class="line">RB = sB * PB + tB * QB</span><br><span class="line"><span class="keyword">print</span> RB</span><br><span class="line"></span><br><span class="line"><span class="comment"># phiB就是从E到EB同态映射,Kernel是RB</span></span><br><span class="line">phiB = E.isogeny(RB)</span><br><span class="line"><span class="keyword">print</span> phiB</span><br><span class="line">EB = phiB.codomain()</span><br><span class="line"><span class="keyword">print</span> EB</span><br><span class="line"><span class="keyword">print</span> E.is_isogenous(EB)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Bob发送以下信息给Alice:</span></span><br><span class="line">EB, phiB_PA, phiB_QA = EB, phiB(PA), phiB(QA)</span><br><span class="line">EB, phiB_PA, phiB_QA</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="秘密值计算"><a href="#秘密值计算" class="headerlink" title="秘密值计算"></a>秘密值计算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Alice计算秘密值</span></span><br><span class="line">R_BA = sA * phiB_PA + tA * phiB_QA</span><br><span class="line"><span class="keyword">print</span> R_BA</span><br><span class="line">phiBA = EB.isogeny(R_BA)</span><br><span class="line"><span class="keyword">print</span> phiBA</span><br><span class="line">KA = phiBA.codomain().j_invariant()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Bob计算秘密值</span></span><br><span class="line">R_AB = sB * phiA_PB + tB * phiA_QB</span><br><span class="line"><span class="keyword">print</span> R_AB</span><br><span class="line">phiAB = EA.isogeny(R_AB)</span><br><span class="line"><span class="keyword">print</span> phiB</span><br><span class="line">KB = phiAB.codomain().j_invariant()</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试秘密值是否相等</span></span><br><span class="line"><span class="keyword">if</span> KA == KB:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Success!"</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文试图对SIDH算法进行最直观的描述，让初具群论知识的从业者对此算法稍有认识。正因为强调直观、直白，自然忽略了其中许多深入的知识，包括：曲线参数的选取，计算同源的具体算法，为什么SIDH可抗量子攻击等。简而言之，本文旨在抛砖引玉，能引起读者兴趣就足够了，其内涵有限，作为”茶余饭后“的聊资很恰当，但绝不是严肃的科技文献。有兴趣者可在eprint等网站获取更多的科技论文进行研究。</p>
 <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>本文内容插图截取自<a href="https://csclub.uwaterloo.ca/~dburbani/work/friendlysidh.pdf" target="_blank" rel="noopener">David Urbanik的文献</a> 。代码源自网络，但是现在已经找不回原网站，抱歉！</p>
-<p>–</p>
+<p>—</p>
 
           
         
@@ -494,16 +484,12 @@
           
             <p>原谅我一次又一次以<code>Hello, World!</code>向世界问好，向大家问好，然而却张口结舌，无话可说。</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
@@ -766,7 +752,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
