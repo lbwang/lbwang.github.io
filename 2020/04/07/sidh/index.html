@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://lbwang.github.io/2020/04/07/images/SIDH-2.png">
 <meta property="og:image" content="https://lbwang.github.io/2020/04/07/images/SIDH-2.png">
 <meta property="article:published_time" content="2020-04-07T03:18:32.000Z">
-<meta property="article:modified_time" content="2020-04-07T08:42:06.970Z">
+<meta property="article:modified_time" content="2020-04-07T08:44:28.343Z">
 <meta property="article:author" content="Bintou Wang">
 <meta property="article:tag" content="Crypto">
 <meta property="article:tag" content="Key Exchange">
@@ -351,7 +351,7 @@
 </ul>
 <h3 id="秘密值的计算"><a href="#秘密值的计算" class="headerlink" title="秘密值的计算"></a>秘密值的计算</h3><p>Alice计算子群<script type="math/tex">E_{BA}</script> ，方法如下：</p>
 <ul>
-<li>注意，此时Alice掌握的信息是<code>$s_A$</code>，<script type="math/tex">t_A</script>，<script type="math/tex">R_A</script>，<script type="math/tex">\phi_B(P_A)</script> 和 <script type="math/tex">\phi_B(Q_A)</script> ，她想计算得到<script type="math/tex">\phi_B(R_A)</script> 。并且要强调，<script type="math/tex">\phi_B</script> 是一种群同态。</li>
+<li>注意，此时Alice掌握的信息是<script type="math/tex">s_A</script>，<script type="math/tex">t_A</script>，<script type="math/tex">R_A</script>，<script type="math/tex">\phi_B(P_A)</script> 和 <script type="math/tex">\phi_B(Q_A)</script> ，她想计算得到<script type="math/tex">\phi_B(R_A)</script> 。并且要强调，<script type="math/tex">\phi_B</script> 是一种群同态。</li>
 <li>于是，利用群同态的属性可计算得到：<script type="math/tex">\phi_B(R_A) = \phi_B(s_A P_A + t_A Q_A) = s_A \phi_B(P_A) + t_A \phi_B(Q_A)</script> 。</li>
 <li>根据<script type="math/tex">\phi_B(R_A)</script> 计算<script type="math/tex">E_{BA}</script>。<script type="math/tex">E_{BA}</script>是曲线群<script type="math/tex">E</script> 的子群，是以<script type="math/tex">\phi_B (R_A)</script> 为Kernel的群同态映射到<script type="math/tex">E</script>上的子群。这个群同态也就是Isogeny，这个Isogeny我们记为 <script type="math/tex">\phi_{BA}</script> 。终于我们明白了什么是<script type="math/tex">E_{BA}</script> ！</li>
 </ul>
