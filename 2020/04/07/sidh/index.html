@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Crypto; Key Exchange; Post Quantum," />
 
 
 
@@ -79,15 +79,21 @@
 
 
 
-<meta name="description" content="Too simple and sometimes naive.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bintou&#39;s Blog">
-<meta property="og:url" content="https://lbwang.github.io/index.html">
+<meta name="description" content="后量子安全秘钥交换协议SIDH简介引言超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。 Diffie-Hellman算法目前应用最广泛的秘钥交换协议是Diffie-Hell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后量子安全秘钥交换协议SIDH简介">
+<meta property="og:url" content="https://lbwang.github.io/2020/04/07/sidh/index.html">
 <meta property="og:site_name" content="Bintou&#39;s Blog">
-<meta property="og:description" content="Too simple and sometimes naive.">
+<meta property="og:description" content="后量子安全秘钥交换协议SIDH简介引言超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。 Diffie-Hellman算法目前应用最广泛的秘钥交换协议是Diffie-Hell">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lbwang.github.io/Users/lbwang/Desktop/SIDH-2.png">
+<meta property="og:image" content="https://lbwang.github.io/Users/lbwang/Desktop/SIDH-3.png">
+<meta property="article:published_time" content="2020-04-07T03:18:32.000Z">
+<meta property="article:modified_time" content="2020-04-07T03:29:18.673Z">
 <meta property="article:author" content="Bintou Wang">
+<meta property="article:tag" content="Crypto; Key Exchange; Post Quantum">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lbwang.github.io/Users/lbwang/Desktop/SIDH-2.png">
 
 
 
@@ -117,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://lbwang.github.io/"/>
+  <link rel="canonical" href="https://lbwang.github.io/2020/04/07/sidh/"/>
 
 
 
 
 
-  <title>Bintou's Blog</title>
+  <title>后量子安全秘钥交换协议SIDH简介 | Bintou's Blog</title>
   
 
 
@@ -142,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,9 +221,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -248,9 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/07/sidh/" itemprop="url">后量子安全秘钥交换协议SIDH简介</a></h1>
+          <h1 class="post-title" itemprop="name headline">后量子安全秘钥交换协议SIDH简介</h1>
         
 
         <div class="post-meta">
@@ -300,9 +303,7 @@
       
 
       
-        
-          
-            <h1 id="后量子安全秘钥交换协议SIDH简介"><a href="#后量子安全秘钥交换协议SIDH简介" class="headerlink" title="后量子安全秘钥交换协议SIDH简介"></a>后量子安全秘钥交换协议SIDH简介</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。</p>
+        <h1 id="后量子安全秘钥交换协议SIDH简介"><a href="#后量子安全秘钥交换协议SIDH简介" class="headerlink" title="后量子安全秘钥交换协议SIDH简介"></a>后量子安全秘钥交换协议SIDH简介</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。</p>
 <h2 id="Diffie-Hellman算法"><a href="#Diffie-Hellman算法" class="headerlink" title="Diffie-Hellman算法"></a>Diffie-Hellman算法</h2><p>目前应用最广泛的秘钥交换协议是Diffie-Hellman (DH) 算法，其思路如图所示，任何一本密码学教材都有具体过程的描述，本文不再赘述。如果不懂DH算法，也没必要阅读本文。</p>
 <p>![屏幕快照 2020-03-04 下午9.46.54](/Users/lbwang/Desktop/屏幕快照 2020-03-04 下午9.46.54.png)</p>
 <p>一般来说，DH算法中使用的群$G$可以是$Z_p^*$乘法群，也可以使用椭圆曲线群。DH算法的安全性建立在离散对数问题(DLP)的难解性，该算法不能抗量子攻击也在于DLP有多项式时间的量子算法。因此，在后量子时代，必须使用新的构造。</p>
@@ -373,8 +374,6 @@
 <p>–</p>
 <p>2</p>
 
-          
-        
       
     </div>
     
@@ -389,146 +388,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lbwang.github.io/2020/04/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bintou Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bintou's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/07/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-07T10:30:09+08:00">
-                2020-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Crypto-Key-Exchange-Post-Quantum/" rel="tag"># Crypto; Key Exchange; Post Quantum</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/07/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -538,10 +427,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -549,6 +439,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -569,8 +463,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -621,6 +524,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#后量子安全秘钥交换协议SIDH简介"><span class="nav-number">1.</span> <span class="nav-text">后量子安全秘钥交换协议SIDH简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Diffie-Hellman算法"><span class="nav-number">1.2.</span> <span class="nav-text">Diffie-Hellman算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造新型Diffie-Hellman算法的思路"><span class="nav-number">1.3.</span> <span class="nav-text">构造新型Diffie-Hellman算法的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIDH构造的简化版本"><span class="nav-number">1.4.</span> <span class="nav-text">SIDH构造的简化版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIDH构造的细化版本"><span class="nav-number">1.5.</span> <span class="nav-text">SIDH构造的细化版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SIDH参数设计"><span class="nav-number">1.5.1.</span> <span class="nav-text">SIDH参数设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alice的操作"><span class="nav-number">1.5.2.</span> <span class="nav-text">Alice的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bob的操作"><span class="nav-number">1.5.3.</span> <span class="nav-text">Bob的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#秘密值的计算"><span class="nav-number">1.5.4.</span> <span class="nav-text">秘密值的计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sage代码展示SIDH的思路"><span class="nav-number">1.6.</span> <span class="nav-text">Sage代码展示SIDH的思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数设置"><span class="nav-number">1.6.1.</span> <span class="nav-text">参数设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alice-的操作"><span class="nav-number">1.6.2.</span> <span class="nav-text">Alice 的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bob的操作-1"><span class="nav-number">1.6.3.</span> <span class="nav-text">Bob的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#秘密值计算"><span class="nav-number">1.6.4.</span> <span class="nav-text">秘密值计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">1.8.</span> <span class="nav-text">致谢</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -754,6 +673,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
