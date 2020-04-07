@@ -304,10 +304,8 @@
           
             <h1 id="后量子安全秘钥交换协议SIDH简介"><a href="#后量子安全秘钥交换协议SIDH简介" class="headerlink" title="后量子安全秘钥交换协议SIDH简介"></a>后量子安全秘钥交换协议SIDH简介</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。</p>
 <h2 id="Diffie-Hellman算法"><a href="#Diffie-Hellman算法" class="headerlink" title="Diffie-Hellman算法"></a>Diffie-Hellman算法</h2><p>目前应用最广泛的秘钥交换协议是Diffie-Hellman (DH) 算法，其思路如图所示，任何一本密码学教材都有具体过程的描述，本文不再赘述。如果不懂DH算法，也没必要阅读本文。</p>
-<p>![屏幕快照 2020-03-04 下午9.46.54](/Users/lbwang/Desktop/屏幕快照 2020-03-04 下午9.46.54.png)</p>
 <p>一般来说，DH算法中使用的群$G$可以是$Z_p^*$乘法群，也可以使用椭圆曲线群。DH算法的安全性建立在离散对数问题(DLP)的难解性，该算法不能抗量子攻击也在于DLP有多项式时间的量子算法。因此，在后量子时代，必须使用新的构造。</p>
 <h2 id="构造新型Diffie-Hellman算法的思路"><a href="#构造新型Diffie-Hellman算法的思路" class="headerlink" title="构造新型Diffie-Hellman算法的思路"></a>构造新型Diffie-Hellman算法的思路</h2><p>构造新算法的思路往往源于对现有算法的高度抽象。DH算法可以抽象为这样一种过程：</p>
-<p>![image-20200304215338105](/Users/lbwang/Desktop/屏幕快照 2020-03-04 下午9.53.21.png)</p>
 <p>Alice的秘密是$a$，她的计算先做→，得到$g^a$，再做↓，得到$g^{ab}$。而Bob的秘密是$b$，他先做↓，再做→。殊途同归得到$g^{ab}$。进一步扩展这种思路，我们寻求这样一种群结构，如下图所示：</p>
 <p>![image-20200304215920802](/Users/lbwang/Library/Application Support/typora-user-images/image-20200304215920802.png)</p>
 <p>这是一种抽象描述，但是它表达了一种直观的思路。$G$是公共参数，Alice的秘密是$A$，Bob的秘密是$B$。比如，假想这样的情况，$G$是一个乘法群，$A$和$B$是$G$的正规子群。Alice和Bob如果还是按照上面的做法，都可以计算出商群$G/AB$，$AB$理解为$A \cap B$ 。必须承认，这还不是DH，因为要算出$A \cap B$，就必须有$A$和$B$，也就是说Alice和Bob都不能隐藏自己的秘密。不过，数学家的理想就是要构造出这样一幅交换图，且满足以下两种属性：</p>
@@ -317,7 +315,6 @@
 </ul>
 <p>基本上SIDH算法就是满足此要求的一种构造。再次强调，不要被上面的例子误导，这里的$G$、$A$、$G/A$ 等表达都是抽象结构的符号表达，并没有明确含义。以下的SIDH构造描述就是要给出其相对具体的构造。</p>
 <h2 id="SIDH构造的简化版本"><a href="#SIDH构造的简化版本" class="headerlink" title="SIDH构造的简化版本"></a>SIDH构造的简化版本</h2><p>SIDH的基本代数结构是超奇异椭圆曲线群$E$和超奇异同源（Isogeny）$\phi$ 。基本思路如下图所示：</p>
-<p><img src="/Users/lbwang/Desktop/SIDH-2.png" alt="SIDH-2"></p>
 <p>首先，超奇异椭圆曲线群$E$理解为一个群即可，所谓”超奇异“这个概念可以暂时不理会它，知道要求椭圆曲线满足”超奇异“这个要求是为了安全性即可。其次，构造用到的超奇异同源$\phi : E \mapsto E’$是从群$E$到群$E’$的一种群同态。算法类似DH算法分为以下两个步骤：</p>
 <ul>
 <li><p>首先，Alice选取一个点$R_A \in E$，$\langle R_A \rangle$确定了群$E$的一个子群，然后可以计算得到一个从$E$映射到其子群$E_A$的同源 $\phi_A: E \mapsto E_A$，这是Alice的秘密信息。Alice发送公开信息$E_A$给Bob。</p>
@@ -328,7 +325,6 @@
 <p>最终Alice算出$E_{BA}$($E/\langle R_B, R_A \rangle$ )，Bob算出$E_{AB}$ ($E/\langle R_A, R_B \rangle$ )。解释一下，上图中的$E/\langle R_A \rangle$ 和$E/\langle R_B \rangle$)分别是$E_A$和 $E_B$，这样表达是为了与之前的表达一致，其实这里并不是做商群，而是表达说$\phi_A$的Kernel是$\langle R_A \rangle$。目前的科技文献大多使用这种表达。</p>
 <p>再解释一下$E_{BA}$是什么。上面说到，$E_A$是曲线群$E$的子群，它由Isogeny $\phi_A$决定，可理解为群同态$\phi_A$映射到$E$上的像 (Image)形成的子群。同理，$E_{BA}$是Isogeny $\phi_{BA}$  映射到$E$上的子群，而Isogeny $\phi_{BA}$ 是由$\langle R_B, R_A \rangle$决定的，即Isogeny $\phi_{BA}$ 的Kernel是$\langle R_B, R_A \rangle$。</p>
 <p>慢着，Alice怎么算出$E_{BA}$ ($E/\langle R_B, R_A \rangle$ )？对，Alice有$E_B$但是并没有$R_B$，所以她并不显然能算出$E_{BA}$。当然，我们还有很多的问题并没有说清楚，还需要进一步细化解释。如果阅读到这里还基本能跟上思路且还保持兴趣的请看下图。</p>
-<p><img src="/Users/lbwang/Desktop/SIDH-3.png" alt="SIDH-3"></p>
 <h2 id="SIDH构造的细化版本"><a href="#SIDH构造的细化版本" class="headerlink" title="SIDH构造的细化版本"></a>SIDH构造的细化版本</h2><p>为了满足Alice在没有Bob的秘密信息的情况下能计算出$E_{BA}$ 的要求，SIDH需要使用更多的参数设计和相关计算。算法增加描述如下：</p>
 <h3 id="SIDH参数设计"><a href="#SIDH参数设计" class="headerlink" title="SIDH参数设计"></a>SIDH参数设计</h3><p>首先，选择超奇异椭圆曲线$E$作为公开参数。然后Alice随机选择两个元素$P_A, Q_A \in E$，并公开作为自己的公共参数。同样，Bob也随机选择两个元素$ P_B, Q_B \in E$ 并公开。</p>
 <h3 id="Alice的操作"><a href="#Alice的操作" class="headerlink" title="Alice的操作"></a>Alice的操作</h3><ul>
@@ -371,7 +367,6 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文试图对SIDH算法进行最直观的描述，让初具群论知识的从业者对此算法稍有认识。正因为强调直观、直白，自然忽略了其中许多深入的知识，包括：曲线参数的选取，计算同源的具体算法，为什么SIDH可抗量子攻击等。简而言之，本文旨在抛砖引玉，能引起读者兴趣就足够了，其内涵有限，作为”茶余饭后“的聊资很恰当，但绝不是严肃的科技文献。有兴趣者可在eprint等网站获取更多的科技论文进行研究。</p>
 <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>本文内容插图截取自<a href="https://csclub.uwaterloo.ca/~dburbani/work/friendlysidh.pdf" target="_blank" rel="noopener">David Urbanik的文献</a> 。代码源自网络，但是现在已经找不回原网站，抱歉！</p>
 <p>–</p>
-<p>2</p>
 
           
         
@@ -439,7 +434,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/07/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2020/04/07/hello-world/" itemprop="url">Hello World！</a></h1>
         
 
         <div class="post-meta">
@@ -491,7 +486,7 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+            <p>原谅我一次又一次以<code>Hello, World!</code>向世界问好，向大家问好，然而却张口结舌，无话可说。</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
@@ -598,7 +593,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
