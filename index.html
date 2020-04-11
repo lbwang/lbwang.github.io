@@ -178,7 +178,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-09 21:24:22" itemprop="dateModified" datetime="2020-04-09T21:24:22+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-11 11:59:22" itemprop="dateModified" datetime="2020-04-11T11:59:22+08:00">2020-04-11</time>
               </span>
 
           
@@ -193,16 +193,76 @@
 
       
           <h2 id="引言">引言</h2>
-<p>本文简单介绍椭圆曲线密码学的基本内容，目标是直观、简化，忽略严谨性。切记，简单是为了导向严肃而不是庸俗。阅读以下内容，在有群论与密码学的基础上，大概需要1个小时。如果没有密码学基础，可忽略密码学，而重点关注椭圆曲线的定义与相关计算。建议安装<a href="http://sagemath.org" target="_blank" rel="noopener">Sage</a>，在阅读过程中尝试运行相关代码，以助理解。</p>
+<p>本文简单介绍椭圆曲线密码学的基本内容，目标是直观、简化，忽略严谨性。切记，简单是为了导向严肃而不是庸俗。</p>
+<p>阅读以下内容，在有群论与密码学的基础上，大概需要1个小时。如果没有密码学基础，可忽略密码学，而重点关注椭圆曲线的定义与相关计算。建议安装<a href="http://sagemath.org" target="_blank" rel="noopener">Sage</a>，在阅读过程中尝试运行相关代码，以助理解。</p>
 <h2 id="什么是椭圆曲线">什么是椭圆曲线？</h2>
-<h3 id="定义">定义</h3>
-<h3 id="椭圆曲线的图形表示">椭圆曲线的图形表示</h3>
-<h2 id="椭圆曲线的基本运算">椭圆曲线的基本运算</h2>
+<p>忽略严谨性，简单而言，</p>
+<blockquote>
+<p>所谓椭圆曲线就是满足以下方程的点(即序对<span class="math inline">\((x,y)\)</span>)形成的集合。 <span class="math display">\[y^2 = x^3 + ax + b\]</span></p>
+</blockquote>
+<p>其中，要求 <span class="math inline">\(4a^3 + 27b^2 \ne 0\)</span>。如果<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>落在实数域上，<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>自然也落在实数域上。让我们看看这样的点形成什么样的曲线。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sage: a &#x3D; -5; b &#x3D; 4</span><br><span class="line">sage: E1 &#x3D; EllipticCurve(RR, [a, b])</span><br><span class="line">sage: show(plot(E1, hue&#x3D;.9))</span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/2020/04/08/ecc/ec.JPG" alt><figcaption>椭圆曲线</figcaption>
+<img src="/2020/04/08/ecc/ec-R1.JPG" alt><figcaption>实数域R上的椭圆曲线</figcaption>
 </figure>
-<h2 id="ecc版本的diffie-hellman协议">ECC版本的Diffie-Hellman协议</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; next_prime(randrange(10^40))</span><br><span class="line">sage: print p</span><br><span class="line">sage: F &#x3D; FiniteField(p)</span><br><span class="line">sage: E &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: P &#x3D; E.random_element()</span><br><span class="line">sage: print P</span><br><span class="line">sage: b &#x3D; randrange(1000); b</span><br><span class="line">sage: B &#x3D; b*P</span><br><span class="line">sage: a &#x3D; randrange(1000); a</span><br><span class="line">sage: A &#x3D; a*P</span><br><span class="line">sage: if(a*B &#x3D;&#x3D; b*A): print &quot;We share a common secret.&quot;</span><br></pre></td></tr></table></figure>
+<p>如果改变<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>的值，可以得到其他的曲线，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sage: a &#x3D; 2; b &#x3D; 3</span><br><span class="line">sage: E2 &#x3D; EllipticCurve(RR, [a, b])</span><br><span class="line">sage: show(plot(E2, hue&#x3D;.9))</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="/2020/04/08/ecc/ec-R2.JPG" alt><figcaption>实数域R上的椭圆曲线</figcaption>
+</figure>
+<p>我们还可以选取随机的<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>，去看看曲线长什么样。比如我们完全无法预测以下曲线的模样： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sage: E3 &#x3D; EllipticCurve(RR,[RR.random_element(), RR.random_element()])</span><br><span class="line">sage: show(plot(E3, hue&#x3D;.9))</span><br></pre></td></tr></table></figure></p>
+<figure>
+<img src="/2020/04/08/ecc/ec-R3.JPG" alt><figcaption>实数域R上的椭圆曲线</figcaption>
+</figure>
+<p>通过以上的图，我们得到了对椭圆曲线的第一印象。但是，这些曲线还不是我们最关心的，我们关心的是，如果<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>落在有限域<span class="math inline">\(F_p\)</span>上的情形。考虑到我大部分的学生对有限域的概念比较陌生，但是恰巧他们懂有限群。于是，我这样说，设<span class="math inline">\(a, b \in Z_p^*\)</span>，<span class="math inline">\(p\)</span>是一个素数。<span class="math inline">\(F_p\)</span>比<span class="math inline">\(Z_p^*\)</span>多了一个加法和<span class="math inline">\(0\)</span>，仅此而已，不要慌！</p>
+<p>比如，我们运行以下代码。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; 137 #p是一个素数</span><br><span class="line">sage: F &#x3D; GF(p) #一种有限域，也可以用 F &#x3D; FiniteField(p)命令</span><br><span class="line">sage: E4 &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: show(plot(E4, hue&#x3D;.9))</span><br></pre></td></tr></table></figure> <img src="/2020/04/08/ecc/ec137.JPG" alt="有限域GF(137)上的椭圆曲线"></p>
+<p>原来椭圆曲线所谓的“曲线”既不“曲”，也不成线，而是离散点的集合。到底有多少个点呢？这是椭圆曲线研究关心的大问题。对我们而言，只需要知道以上曲线大概有多点即可。可以使用以下命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage: E4.points()</span><br></pre></td></tr></table></figure>
+<h2 id="椭圆曲线群及其基本运算">椭圆曲线群及其基本运算</h2>
+<p>看到这里，你至少知道椭圆曲线就是一堆”乱七八糟“点的集合，这有什么用呢？暂时还没什么用，直到我们说，椭圆曲线上的点在加法上成群。首先，我们再一次给出椭圆曲线的定义。</p>
+<blockquote>
+<p><span class="math inline">\(\mathbb{F}\)</span>为有限域，设 <span class="math inline">\(a, b \in \mathbb{F}\)</span>为常数，它们使得 <span class="math inline">\(4a^3 + 27b^2 \ne 0\)</span>。非奇异椭圆曲线 <span class="math inline">\(E\)</span> 是满足方程 <span class="math inline">\(y^2 = x^3 + ax + b\)</span>上的解集合 <span class="math inline">\(\{(x, y) \in \mathbb{F} \times \mathbb{F}\}\)</span> 加上一个称为”无穷远点“的特殊点 <span class="math inline">\(\mathcal{O}\)</span> ，并且<span class="math inline">\(E\)</span>在加法上成为交换群。</p>
+</blockquote>
+<p>所谓无穷远点<span class="math inline">\(\mathcal{O}\)</span>就是加法的单位元。这里的内涵比较丰富，暂时可以不管。我们迫切要做的是把点的加法定义出来。在定义前，我们规定一些表示法。<span class="math inline">\(P,Q \in E\)</span>表示曲线<span class="math inline">\(E\)</span>上的两个点，注意，点是一个序对<span class="math inline">\((x,y)\)</span>。所谓加法（群上点的加法）就是给定<span class="math inline">\(P\)</span>和<span class="math inline">\(Q\)</span>求<span class="math inline">\(R\)</span>，使得<span class="math inline">\(R = P + Q\)</span>。加法有两种情形。</p>
+<h3 id="加法1p-q">加法1：P != Q</h3>
+<p>如图所示，此时，给定不同的点<span class="math inline">\(P\)</span>和<span class="math inline">\(Q\)</span>，我们作<span class="math inline">\(P\)</span>和<span class="math inline">\(Q\)</span>的连线，该线与<span class="math inline">\(E\)</span>相交于某个点，把这个点沿<span class="math inline">\(X\)</span>轴翻转就得到了点<span class="math inline">\(R\)</span>。这个<span class="math inline">\(R = P + Q\)</span>。</p>
+<figure>
+<img src="/2020/04/08/ecc/ec-Add1.JPG" alt><figcaption>椭圆曲线加法</figcaption>
+</figure>
+<p>具体到数值计算，设 <span class="math inline">\(P = (x_1, y_1)\)</span>和 <span class="math inline">\(Q = (x_2, y_2)\)</span>， <span class="math inline">\(R = (x_3, y_3)\)</span>，则</p>
+<ul>
+<li>计算连线<span class="math inline">\(L\)</span>的斜率<span class="math inline">\(\lambda = (y_2 – y_1) / (x_2 – x_1)\)</span> 。<span class="math inline">\(L\)</span>可记为： <span class="math display">\[y = \lambda(x - x_1) + y_1;\]</span></li>
+<li><span class="math inline">\(L\)</span> 与 <span class="math inline">\(E\)</span> 相交在，或者说把用斜率与<span class="math inline">\(x\)</span>表达的<span class="math inline">\(y\)</span>代入椭圆曲线方程： <span class="math display">\[(\lambda(x - x_1) + y_1)^2 = x^3 + ax + b,\]</span> 整理可得： <span class="math display">\[0 = x^3 - \lambda^2 x^2 + \cdots ;\]</span></li>
+<li>因为我以上方程有三个根（注意，它是三次方程），所以， <span class="math display">\[  x^3 + \lambda^2 x^2 + \cdots  =  (x - x_1)(x - x_2)(x - x_3 ) =
+        x^3 - (x_1 + x_2 + x_3) x^2 + \cdots   =  0 \]</span><br>
+</li>
+<li>因此，我们可得：<span class="math inline">\(x_3 = \lambda^2 - x_1 - x_2\)</span>，<span class="math inline">\(y_3 = \lambda(x_1 - x_3) - y_1\)</span>。注意，我们已经做了值的翻转！</li>
+</ul>
+<h3 id="加法2p-q">加法2：P == Q</h3>
+<p>如图所示，此时，只给定了一个点<span class="math inline">\(P\)</span>，我们要计算<span class="math inline">\(R = P + P\)</span>。</p>
+<figure>
+<img src="/2020/04/08/ecc/ec-Add2.JPG" alt><figcaption>椭圆曲线加法</figcaption>
+</figure>
+<p>首先，沿点<span class="math inline">\(P\)</span>作曲线的切线，与<span class="math inline">\(E\)</span>相交于某点，然后沿<span class="math inline">\(X\)</span>轴翻转该点就得到<span class="math inline">\(R\)</span>。具体计算如下：</p>
+<ul>
+<li><span class="math inline">\(\lambda = (3x_1^2 + a) / 2y_1\)</span></li>
+<li>$ x_3 = ^2 - 2x_1$, <span class="math inline">\(y_3 = \lambda(x_1 – x_3) - y_1\)</span></li>
+</ul>
+<p>具体推导与解释就不再展开，可参考相关教科书。</p>
+<h3 id="无穷远点到底是什么">无穷远点到底是什么？</h3>
+<p>我们知道<span class="math inline">\(\mathcal{O}\)</span>是群的单位元，也就是说<span class="math inline">\(P + Q = \mathcal{O}\)</span>，如果<span class="math inline">\(P\)</span>与<span class="math inline">\(Q\)</span>互为逆元。</p>
+<h3 id="椭圆曲线群满足的属性">椭圆曲线群满足的属性</h3>
+<p>最简单来说，因为<span class="math inline">\(E\)</span>是交换群，它必然满足所有的群公理：</p>
+<ul>
+<li>单位元：<span class="math inline">\(P + \mathcal{O} = \mathcal{O} + P = P\)</span>;</li>
+<li>逆元：<span class="math inline">\(P + (-P) = \mathcal{O}\)</span>, when <span class="math inline">\(P = (x, y)\)</span>, <span class="math inline">\(-P = (x, -y)\)</span>;</li>
+<li>结合律：<span class="math inline">\(P + (Q + R) = (P + Q) + R\)</span>;</li>
+<li>交换律：<span class="math inline">\(P + Q = Q + P\)</span>;</li>
+</ul>
+<h2 id="椭圆曲线密码学">椭圆曲线密码学</h2>
+<p>说了这么多，椭圆曲线与密码学怎么关联起来呢？</p>
+<h3 id="ecc版本的diffie-hellman协议">ECC版本的Diffie-Hellman协议</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; next_prime(randrange(10^40))</span><br><span class="line">sage: print(p)</span><br><span class="line">sage: F &#x3D; FiniteField(p)</span><br><span class="line">sage: E &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: P &#x3D; E.random_element()</span><br><span class="line">sage: print(P)</span><br><span class="line">sage: b &#x3D; randrange(1000); b</span><br><span class="line">sage: B &#x3D; b*P</span><br><span class="line">sage: a &#x3D; randrange(1000); a</span><br><span class="line">sage: A &#x3D; a*P</span><br><span class="line">sage: if(a*B &#x3D;&#x3D; b*A): print(&quot;We share a common secret.&quot;)</span><br></pre></td></tr></table></figure>
 
       
     </div>
