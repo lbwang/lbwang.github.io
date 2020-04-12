@@ -147,6 +147,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://lbwang.github.io/2020/04/12/sage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bintou Wang">
+      <meta itemprop="description" content="Too simple and sometimes naive.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bintou's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/12/sage/" class="post-title-link" itemprop="url">SageMath-- a free open-source mathematics software system</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-12 11:25:01 / Modified: 12:03:22" itemprop="dateCreated datePublished" datetime="2020-04-12T11:25:01+08:00">2020-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机科学与技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>向各位隆重介绍一位好朋友：<a href="http://www.sagemath.org/" target="_blank" rel="noopener">Sage</a>，一种功能强大的<strong>数学软件系统</strong>，大概将其看为Maple、Mathematica、Magma或者Matlab的兄弟软件即可。它是功能强大、操作方便的<a href="http://www.jianshu.com/p/eab781d2f8b9" target="_blank" rel="noopener">自由开源软件</a>。如果你能交上这样的朋友，并善于利用它，它一定能给你很大的帮助。</p>
+<h3 id="如何使用sage">如何使用Sage？</h3>
+<h4 id="方法1--在线使用">方法1--在线使用</h4>
+<p>通过浏览器访问<a href="http://aleph.sagemath.org/" target="_blank" rel="noopener">SageMathCell</a>（无需帐号登录，缺点就是不能保存文档。）或者<a href="https://sagecell.sagemath.org/" target="_blank" rel="noopener">SageMathCell</a>（需要通过帐号登录，可保存相关文档。），即可享受Sage的各种功能！最近，这个网站<a href="https://cocalc.com/" target="_blank" rel="noopener">Collaborative Calculation in the Cloud</a>也不错。</p>
+<h4 id="方法2--下载安装">方法2--下载安装</h4>
+<p><a href="http://www.sagemath.org/download.html" target="_blank" rel="noopener">下载Sage源代码或安装包</a>，在Linux下或者在Mac OS下安装一个Sage，很方便。</p>
+<h4 id="方法3--windows下">方法3--Windows下</h4>
+<p>如果你是忠实的Windows用户，其实也很方便，卸载Windows再装一个Linux呗。其实，开玩笑的，Sage可以在Windows下安装。</p>
+<h3 id="sage能干什么">Sage能干什么？</h3>
+<h4 id="计算">1. 计算</h4>
+<p>实际情况就是，我们学了计算机，懂这个那个，但是不精通计算，对不？Sage主要在计算上帮我们大忙。你总不会以为下面这些工作你很“<em>精通</em>”吧？</p>
+<p><strong>例子0</strong>，来一个容易的，求两个整数之和或者积。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sage: 123456789 + 987654321</span><br><span class="line">1111111110</span><br><span class="line">sage: 111111111*111111111</span><br><span class="line">12345678987654321</span><br></pre></td></tr></table></figure>
+<p><strong>例子1</strong>，想知道2的1000次方是多少？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sage: 2**1000</span><br><span class="line">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376</span><br></pre></td></tr></table></figure>
+<p><strong>例子2</strong>，想知道2的1279次方减1是否素数？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sage: is_prime(2**1279 - 1)</span><br><span class="line"> True</span><br></pre></td></tr></table></figure>
+<p><strong>例子3</strong>，对函数 <span class="math inline">\(f(x) = x^x\)</span> 进行求导。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sage: derivative(x^x, x)</span><br><span class="line">x^x*(log(x) + 1)</span><br></pre></td></tr></table></figure>
+<p><strong>例子4</strong>，对某个矩阵求其逆矩阵，或者求矩阵的特征值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sage:  A &#x3D; Matrix([[1,0,0,0],[1,1,0,0],[1,2,1,0],[1,3,3,1]])</span><br><span class="line">sage:  A.inverse()</span><br><span class="line">[ 1  0  0  0]</span><br><span class="line">[-1  1  0  0]</span><br><span class="line">[ 1 -2  1  0]</span><br><span class="line">[-1  3 -3  1]</span><br><span class="line">sage: A.eigenvalues()</span><br><span class="line">[1, 1, 1, 1]</span><br></pre></td></tr></table></figure>
+<p><strong>例子5</strong>，作图。一个命令作出的正态分布图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage: plot(gs(x, 3, 1), x, 0, 10)</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="/2020/04/12/sage/gs.JPG" alt><figcaption>正态分布图</figcaption>
+</figure>
+<p>gs这个函数定义如下，完全是Python的语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gs</span><span class="params">(x,mu,sigma)</span>:</span></span><br><span class="line">      a = <span class="number">1</span>/(sqrt(<span class="number">2</span>*<span class="number">3.1415926</span>)*sigma)</span><br><span class="line">      b = -(x - mu)^<span class="number">2</span>/(<span class="number">2</span>*sigma^<span class="number">2</span>)</span><br><span class="line">      <span class="keyword">return</span> a*exp(b)</span><br></pre></td></tr></table></figure>
+<p>当然，例子还有很多，数不胜数。然而，怎么举例都显得小看了Sage，因为它几乎无所不能。其实，学习使用Sage除了让它帮忙计算，还主要因为它可以帮助我们......</p>
+<h4 id="教学">2. 教学</h4>
+<p>Sage可以帮助我们学习。学什么？使用Sage进行教学的大学课程包括但肯定定不局限于此：</p>
+<p>a、高等数学: 求导数、求积分、求极限、作图..... b、<a href="http://linear.ups.edu" target="_blank" rel="noopener">线性代数</a>: 高斯消元、Eigenvalue、Determinant..... c、概率论 d、算法 e、计算机安全学 f、组合数学、数论、离散数学 g、<a href="http://abstract.ups.edu" target="_blank" rel="noopener">抽象代数</a></p>
+<p>Sage在教学中的好处就是，把所有的理论都通过可以实践的程序呈现出来，把抽象的内容以直观的方法表现出来，增强课本的可读性，增强学习的趣味性，也可提高学习者的主动性。比如，我用它这样教<a href="http://lbwang.github.io/2020/04/08/ecc/">椭圆曲线密码学</a>。</p>
+<h4 id="编程">3. 编程</h4>
+<p>Sage是一门强大的编程语言，语法与Python基本相同。你甚至可以把Sage理解为扩展了非常多功能的Python。同时，Sage与很多计算机软件、程序设计语言有非常优雅的结合，比如，Sage的输出可以方便地与LaTex结合在一起。</p>
+<p>由于Python已经得到广泛应用，无论是老程序员还是新入门者，选择Sage都显得非常恰当。老程序员会更容易上手，无需改变什么；而新入门者也无需担心选择Sage所带来的局限性。</p>
+<h4 id="科研">4. 科研</h4>
+<p>Sage当然是科研的好帮手：统计、高精度计算、仿真建模等。想参加大学生数学建模比赛的同学能不关注？</p>
+<h3 id="如何学习sage">如何学习Sage</h3>
+<p>目前国外大量的教材支持Sage的使用，因为Sage是开源的自由软件。因此，建议是在网上检索相关的教材。其次，Sage的网页上已经集结了海量的教材，微积分、线性代数、数论等各种指南应有尽有。加上，Sage的使用本身就非常简单，稍微掌握一点命令就可以工作，入门门槛极低，大家完全有能力自己学习。也许这个<a href="http://doc.sagemath.org/pdf/en/tutorial/SageTutorial.pdf" target="_blank" rel="noopener">简明友好的入门</a>能立即拉近你与Sage的距离，请不要犹豫地点开它！这一份<a href="http://wstein.org/books/sagebook/sagebook.pdf" target="_blank" rel="noopener">教程</a>也非常不错，只可惜，看起来它一直停留在没有完成的状态。</p>
+<p>另外，如果有人向你推荐MATLAB，你就可以在向他请教的同时，适时向他推荐一把Sage：开源的，免费，避免用盗版。</p>
+<h3 id="sage的缺点">Sage的缺点</h3>
+<p>Sage的缺陷也是很明显的，主要体现在：很多功能还有待完善；有不少功能需要统一或者协调一致性；开源同时也带来了开发的困难。<a href="https://wstein.org/" target="_blank" rel="noopener">W. Stein</a>，Sage的一位重要的开发者对Sage的未来也表示了<a href="https://www.reddit.com/r/math/comments/2e3qla/william_stein_says_sage_has_overall_failed/" target="_blank" rel="noopener">担忧和负面的评价</a>。他已经离开高校，成立公司专注于Sage开发。</p>
+<p>困难是有的，缺点是有的。然而，只要人类还充满对自由的渴望，开源自由软件就会有美好的未来。</p>
+<h3 id="资源">资源</h3>
+<ul>
+<li><a href="http://www.gregorybard.com/Sage.html" target="_blank" rel="noopener">Sage for Undergraduates</a></li>
+<li><a href="http://sagebook.gforge.inria.fr/english.html" target="_blank" rel="noopener">Mathematical Computation with Sage</a></li>
+</ul>
+<hr>
+<p>2020年4月修改。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://lbwang.github.io/2020/04/08/ecc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -178,8 +296,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-11 22:14:29" itemprop="dateModified" datetime="2020-04-11T22:14:29+08:00">2020-04-11</time>
+                <time title="Modified: 2020-04-12 11:18:03" itemprop="dateModified" datetime="2020-04-12T11:18:03+08:00">2020-04-12</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">密码学</span></a>
+                </span>
+            </span>
 
           
 
@@ -337,8 +464,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-09 21:53:15" itemprop="dateModified" datetime="2020-04-09T21:53:15+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-12 11:18:10" itemprop="dateModified" datetime="2020-04-12T11:18:10+08:00">2020-04-12</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">密码学</span></a>
+                </span>
+            </span>
 
           
 
@@ -450,84 +586,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://lbwang.github.io/2020/04/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bintou Wang">
-      <meta itemprop="description" content="Too simple and sometimes naive.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bintou's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/hello-world/" class="post-title-link" itemprop="url">Hello World！</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-07 10:30:09" itemprop="dateCreated datePublished" datetime="2020-04-07T10:30:09+08:00">2020-04-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-11 22:18:47" itemprop="dateModified" datetime="2020-04-11T22:18:47+08:00">2020-04-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原谅我一次又一次以<code>Hello, World!</code>向世界问好，向大家问好，然而却张口结舌，无话可说。不，我用我自己的方式向世界问好。</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
 
@@ -598,9 +656,15 @@
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
         <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
