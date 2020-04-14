@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://lbwang.github.io/2020/04/08/ecc/ec-Add2.JPG">
 <meta property="og:image" content="https://lbwang.github.io/2020/04/08/ecc/ec-InfPot.JPG">
 <meta property="article:published_time" content="2020-04-08T02:45:34.000Z">
-<meta property="article:modified_time" content="2020-04-13T02:35:33.396Z">
+<meta property="article:modified_time" content="2020-04-14T12:44:32.116Z">
 <meta property="article:author" content="Bintou Wang">
 <meta property="article:tag" content="椭圆曲线">
 <meta property="article:tag" content="教程">
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-13 10:35:33" itemprop="dateModified" datetime="2020-04-13T10:35:33+08:00">2020-04-13</time>
+                <time title="Modified: 2020-04-14 20:44:32" itemprop="dateModified" datetime="2020-04-14T20:44:32+08:00">2020-04-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -304,7 +304,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; 137</span><br><span class="line">sage: F &#x3D; GF(p)</span><br><span class="line">sage: E137 &#x3D; EllipticCurve(F, [3,4])</span><br><span class="line">sage: P &#x3D; E137(18,100)</span><br><span class="line">sage: Q &#x3D; E137(20,114)</span><br><span class="line">sage: R &#x3D; P + Q; R</span><br></pre></td></tr></table></figure>
 <h2 id="椭圆曲线密码学">椭圆曲线密码学</h2>
 <p>说了这么多，椭圆曲线与密码学怎么关联起来呢？首先，我们需要以下概念。</p>
-<p>####椭圆曲线离散对数问题.</p>
+<h4 id="椭圆曲线离散对数问题.">椭圆曲线离散对数问题.</h4>
 <blockquote>
 <p>设<span class="math inline">\(E\)</span>是有限域 <span class="math inline">\(\mathbb{F}\)</span> 上的椭圆曲线，且<span class="math inline">\(P \in E(\mathbb{F})\)</span>。假定 <span class="math inline">\(Q\)</span>是 <span class="math inline">\(P\)</span>的倍数，则所谓椭圆曲线离散对数问题(ECDLP)就是要计算<span class="math inline">\(n\in \mathbb{F}\)</span> 使得 <span class="math inline">\(nP = Q\)</span>。</p>
 </blockquote>
@@ -399,7 +399,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是椭圆曲线"><span class="nav-number">2.</span> <span class="nav-text">什么是椭圆曲线？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线群及其基本运算"><span class="nav-number">3.</span> <span class="nav-text">椭圆曲线群及其基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加法1p-q"><span class="nav-number">3.1.</span> <span class="nav-text">加法1：P !&#x3D; Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加法2p-q"><span class="nav-number">3.2.</span> <span class="nav-text">加法2：P &#x3D;&#x3D; Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无穷远点到底是什么"><span class="nav-number">3.3.</span> <span class="nav-text">无穷远点到底是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线群满足的属性"><span class="nav-number">3.4.</span> <span class="nav-text">椭圆曲线群满足的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在有限域mathbbf上的椭圆曲线"><span class="nav-number">3.5.</span> <span class="nav-text">在有限域\(\mathbb{F}\)上的椭圆曲线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线密码学"><span class="nav-number">4.</span> <span class="nav-text">椭圆曲线密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ecc版本的diffie-hellman协议"><span class="nav-number">4.1.</span> <span class="nav-text">ECC版本的Diffie-Hellman协议</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是椭圆曲线"><span class="nav-number">2.</span> <span class="nav-text">什么是椭圆曲线？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线群及其基本运算"><span class="nav-number">3.</span> <span class="nav-text">椭圆曲线群及其基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加法1p-q"><span class="nav-number">3.1.</span> <span class="nav-text">加法1：P !&#x3D; Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加法2p-q"><span class="nav-number">3.2.</span> <span class="nav-text">加法2：P &#x3D;&#x3D; Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无穷远点到底是什么"><span class="nav-number">3.3.</span> <span class="nav-text">无穷远点到底是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线群满足的属性"><span class="nav-number">3.4.</span> <span class="nav-text">椭圆曲线群满足的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在有限域mathbbf上的椭圆曲线"><span class="nav-number">3.5.</span> <span class="nav-text">在有限域\(\mathbb{F}\)上的椭圆曲线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线密码学"><span class="nav-number">4.</span> <span class="nav-text">椭圆曲线密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#椭圆曲线离散对数问题."><span class="nav-number">4.0.1.</span> <span class="nav-text">椭圆曲线离散对数问题.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ecc版本的diffie-hellman协议"><span class="nav-number">4.1.</span> <span class="nav-text">ECC版本的Diffie-Hellman协议</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
