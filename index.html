@@ -332,7 +332,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-15 11:42:02" itemprop="dateModified" datetime="2020-04-15T11:42:02+08:00">2020-04-15</time>
+                <time title="Modified: 2020-05-03 22:05:27" itemprop="dateModified" datetime="2020-05-03T22:05:27+08:00">2020-05-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -467,9 +467,9 @@
 <p>设<span class="math inline">\(E\)</span>是有限域 <span class="math inline">\(\mathbb{F}\)</span> 上的椭圆曲线，且<span class="math inline">\(P \in E(\mathbb{F})\)</span>。假定 <span class="math inline">\(Q\)</span>是 <span class="math inline">\(P\)</span>的倍数，则所谓椭圆曲线离散对数问题(ECDLP)就是要计算<span class="math inline">\(n\in \mathbb{F}\)</span> 使得 <span class="math inline">\(nP = Q\)</span>。</p>
 </blockquote>
 <p>注意，<span class="math inline">\(nP = \underbrace{p + p + \cdots + p}_n\)</span>，就是<span class="math inline">\(n\)</span>个<span class="math inline">\(p\)</span>相加。这是容易的，至于怎么做，效率如何，这个请读者自己思考。但是我们相信，求解ECDLP问题是困难的，即求解ECDLP计算上不可行。通俗讲，就是没有高效的算法可以完成这个任务。</p>
-<p>其次，我们回忆1975年密码学的一次革命性创新：Diffie-Hellman秘钥交换协议。Diffie-Hellman秘钥交换协议的安全性建立在离散对数问题的困难性之上。只需要把椭圆曲线平移到Diffie-Hellman即可。</p>
+<p>其次，我们回忆1975年密码学的一次革命性创新：Diffie-Hellman密钥交换协议。Diffie-Hellman密钥交换协议的安全性建立在离散对数问题的困难性之上。只需要把椭圆曲线平移到Diffie-Hellman即可。</p>
 <h3 id="ecc版本的diffie-hellman协议">ECC版本的Diffie-Hellman协议</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; next_prime(randrange(10^40)) #获得一个大素数</span><br><span class="line">sage: print(p)</span><br><span class="line">sage: F &#x3D; FiniteField(p)</span><br><span class="line">sage: E &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: P &#x3D; E.random_element()</span><br><span class="line">sage: print(P)</span><br><span class="line">sage: b &#x3D; randrange(1000); b   #Bob的私钥</span><br><span class="line">sage: B &#x3D; b*P                  #Bob的公钥</span><br><span class="line">sage: a &#x3D; randrange(1000); a   #Alice的私钥</span><br><span class="line">sage: A &#x3D; a*P                  #Alice的公钥</span><br><span class="line">sage: if(a*B &#x3D;&#x3D; b*A): print(&quot;We share a common secret.&quot;) #秘钥交换成功.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; next_prime(randrange(10^40)) #获得一个大素数</span><br><span class="line">sage: print(p)</span><br><span class="line">sage: F &#x3D; FiniteField(p)</span><br><span class="line">sage: E &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: P &#x3D; E.random_element()</span><br><span class="line">sage: print(P)</span><br><span class="line">sage: b &#x3D; randrange(1000); b   #Bob的私钥</span><br><span class="line">sage: B &#x3D; b*P                  #Bob的公钥</span><br><span class="line">sage: a &#x3D; randrange(1000); a   #Alice的私钥</span><br><span class="line">sage: A &#x3D; a*P                  #Alice的公钥</span><br><span class="line">sage: if(a*B &#x3D;&#x3D; b*A): print(&quot;We share a common secret.&quot;) #密钥交换成功.</span><br></pre></td></tr></table></figure>
 <p>以此类推，把ECDLP平移到其他基于DLP的密码学算法上去，可以得到ECDSA（数字签名协议）等等。当然，椭圆曲线密码学并不仅仅如此而已。2000年后，基于椭圆曲线的Pairing还有一大系列的基于身份的公钥密码学。目前，基于椭圆曲线理论研究后量子安全密码学也是一大热点。</p>
 <hr>
 <p>20200410下午</p>
@@ -506,7 +506,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/07/sidh/" class="post-title-link" itemprop="url">后量子安全秘钥交换协议SIDH简介</a>
+            <a href="/2020/04/07/sidh/" class="post-title-link" itemprop="url">后量子安全密钥交换协议SIDH简介</a>
         </h2>
 
         <div class="post-meta">
@@ -523,7 +523,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-24 22:15:10" itemprop="dateModified" datetime="2020-04-24T22:15:10+08:00">2020-04-24</time>
+                <time title="Modified: 2020-05-03 22:04:43" itemprop="dateModified" datetime="2020-05-03T22:04:43+08:00">2020-05-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -536,7 +536,7 @@
             </span>
 
           
-            <span id="/2020/04/07/sidh/" class="post-meta-item leancloud_visitors" data-flag-title="后量子安全秘钥交换协议SIDH简介" title="Views">
+            <span id="/2020/04/07/sidh/" class="post-meta-item leancloud_visitors" data-flag-title="后量子安全密钥交换协议SIDH简介" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -568,9 +568,9 @@
 
       
           <h2 id="引言">引言</h2>
-<p>超奇异同源Diffie-Hellman (SIDH) 秘钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。</p>
+<p>超奇异同源Diffie-Hellman (SIDH) 密钥交换算法是后量子安全密码研究的一大重点。本文简介SIDH的基本思路与构造，为对此后量子安全算法有兴趣的读者展示该算法的一种概貌。阅读本文不需要椭圆曲线知识，但是需要一些简单的群论知识，比如，群、子群、群同态、群同构等。</p>
 <h2 id="diffie-hellman算法">Diffie-Hellman算法</h2>
-<p>目前应用最广泛的秘钥交换协议是Diffie-Hellman (DH) 算法，其思路如图所示，任何一本密码学教材都有具体过程的描述，本文不再赘述。如果不懂DH算法，也没必要阅读本文。</p>
+<p>目前应用最广泛的密钥交换协议是Diffie-Hellman (DH) 算法，其思路如图所示，任何一本密码学教材都有具体过程的描述，本文不再赘述。如果不懂DH算法，也没必要阅读本文。</p>
 <figure>
 <img src="/2020/04/07/sidh/DH0.JPG" alt><figcaption>Diffie-Hellman基本协议</figcaption>
 </figure>
