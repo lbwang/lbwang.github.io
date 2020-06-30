@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lbwang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="引言 中国剩余定理用于高效求解一元同余方程组，基本所有标准数论书都会讲解。之所以本博客还有存在的价值，是因为本人认为学习一个定理的最好方式是重新发现该定理。还有，在教学过程中，学生们总问，“为什么数学家们会想到这样的定理”，诸如此类的问题。我试图展示，即使是非常著名的大定理可能也只是源自于正常的思路，并不神秘。以下内容试图达到以上两个小目标，如果读者能从中找到一点乐趣就善莫大焉咯。 阅读本文的基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中国剩余定理与斌头剩余定理">
+<meta property="og:url" content="https://lbwang.github.io/2020/06/30/crt-cn/index.html">
+<meta property="og:site_name" content="Bintou&#39;s Blog">
+<meta property="og:description" content="引言 中国剩余定理用于高效求解一元同余方程组，基本所有标准数论书都会讲解。之所以本博客还有存在的价值，是因为本人认为学习一个定理的最好方式是重新发现该定理。还有，在教学过程中，学生们总问，“为什么数学家们会想到这样的定理”，诸如此类的问题。我试图展示，即使是非常著名的大定理可能也只是源自于正常的思路，并不神秘。以下内容试图达到以上两个小目标，如果读者能从中找到一点乐趣就善莫大焉咯。 阅读本文的基础">
+<meta property="article:published_time" content="2020-06-30T07:54:41.000Z">
+<meta property="article:modified_time" content="2020-06-30T13:05:03.716Z">
+<meta property="article:author" content="Bintou Wang">
+<meta property="article:tag" content="数论与代数">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://lbwang.github.io/2020/06/30/crt-cn/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>中国剩余定理与斌头剩余定理 | Bintou's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bintou's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Reader, Writer and Thinker.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://lbwang.github.io/2020/06/30/crt-cn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bintou Wang">
+      <meta itemprop="description" content="Too simple and sometimes naive.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bintou's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中国剩余定理与斌头剩余定理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-30 15:54:41 / Modified: 21:05:03" itemprop="dateCreated datePublished" datetime="2020-06-30T15:54:41+08:00">2020-06-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E8%AE%BA%E4%B8%8E%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">数论与代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/30/crt-cn/" class="post-meta-item leancloud_visitors" data-flag-title="中国剩余定理与斌头剩余定理" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/30/crt-cn/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/30/crt-cn/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="引言">引言</h3>
+<p>中国剩余定理用于高效求解一元同余方程组，基本所有标准数论书都会讲解。之所以本博客还有存在的价值，是因为本人认为学习一个定理的最好方式是重新发现该定理。还有，在教学过程中，学生们总问，“为什么数学家们会想到这样的定理”，诸如此类的问题。我试图展示，即使是非常著名的大定理可能也只是源自于正常的思路，并不神秘。以下内容试图达到以上两个小目标，如果读者能从中找到一点乐趣就善莫大焉咯。</p>
+<p>阅读本文的基础包括：模算术运算、同余理论、费尔马小定理、欧拉定理以及扩展欧几里得算法。也许阅读本文只需要一点点时间，不大好估计，因为实在是很简单。</p>
+<h3 id="求解一元同余方程组">求解一元同余方程组</h3>
+<p>先看求解一元同余方程组的实例，假定需要解以下方程组： <span class="math display">\[\begin{eqnarray*} x &amp;\equiv&amp;  2  \pmod{5} \\
+    x &amp;\equiv&amp;  3 \pmod{7} \end{eqnarray*}\]</span></p>
+<p>有一种平凡的解决方法如下：</p>
+<ul>
+<li><p>从一个同余式中得到<span class="math inline">\(x = 5t + 2\)</span>，<span class="math inline">\(t \in \mathbb{N}\)</span>；</p></li>
+<li><p>把<span class="math inline">\(x\)</span>代入第二个同余式得到：$ 5t + 2  $；</p></li>
+<li><p>整理可得：<span class="math inline">\(5t \equiv 1 \pmod{7}\)</span>；</p></li>
+<li><p>上式两边同乘<span class="math inline">\(5^{-1}\)</span>得到<span class="math inline">\(t = 7s + 3\)</span>，<span class="math inline">\(s \in \mathbb{N}\)</span>；</p></li>
+<li><p>最后，<span class="math inline">\(x = 35s + 17\)</span>，即<span class="math inline">\(x \equiv 17 \pmod{35}\)</span>。</p></li>
+</ul>
+<p>以上例子告诉我们，解同余方程组是非常简单的工作。然而，从算法的角度看，这不是一种好的解法。中国剩余定理给出了一种简洁、高效的解决方案。</p>
+<h3 id="中国剩余定理--数论角度">中国剩余定理--数论角度</h3>
+<p>对任意的一元同余方程组，<strong>中国剩余定理</strong>（Chinese Remainder Theorem，简记为CRT）， 告诉我们，对特定的模数总是有唯一解，并给出了一种高效的求解方法。先看以下定理的描述。</p>
+<h4 id="中国剩余定理">中国剩余定理</h4>
+<p>设<span class="math inline">\(p\)</span>和<span class="math inline">\(q\)</span>是互素的两个正整数，<span class="math inline">\(n = pq\)</span>。对任意的<span class="math inline">\(a \in \mathbb{Z}_p\)</span>和<span class="math inline">\(b \in \mathbb{Z}_q\)</span>，存在 唯一解<span class="math inline">\(x\)</span>，<span class="math inline">\(0 \leq x &lt; n\)</span>使得： <span class="math display">\[\begin{eqnarray*} x &amp;\equiv&amp; a \pmod{p}\\
+x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*} \]</span></p>
+<p>然而，在给出整个定理证明之前，让我们试图重新“发明”这个定理的证明。希望在这一节当中，读者可以享受到发明定理的乐趣，这比读懂一个证明要快乐得多。所以，在我提示大家要停下来思考的时候，请尽量跟我的节奏走。</p>
+<p>我们的任务是解以上两个同余方程，让我们先考察其中一个同余式。比如，设<span class="math inline">\(p\)</span>为一个整数，对任意的<span class="math inline">\(a \in \mathbb{Z}_p\)</span>， 所要求解的<span class="math inline">\(x\)</span>要满足方程 <span class="math display">\[x \equiv a \pmod{p}\]</span> 那么，<span class="math inline">\(x\)</span>应该长什么模样？答案之一，当然是存在<span class="math inline">\(k\in \mathbb{Z}\)</span>，使得<span class="math inline">\(x = a +kp\)</span>。这是之前例子的方法。还有没有其他答案？</p>
+<p>其实，求解<span class="math inline">\(x\)</span>是要问，给定<span class="math inline">\(a\)</span>和<span class="math inline">\(p\)</span>，在模<span class="math inline">\(p\)</span>的情况下，什么数会与<span class="math inline">\(a\)</span>同余？或者说，试图找一个值<span class="math inline">\(a&#39;\)</span>，使得 <span class="math display">\[ a a&#39; \equiv a \pmod{p}\]</span> 第一印象应该是选一个模<span class="math inline">\(p\)</span>等于<span class="math inline">\(1\)</span>的数<span class="math inline">\(a&#39;\)</span>，当然<span class="math inline">\(a&#39;\)</span>不能简单地等于1。</p>
+<p>大家能回顾一下线性代数中<strong>相似矩阵</strong>的定义吗？对两个<span class="math inline">\(n\times n\)</span>矩阵<span class="math inline">\(A\)</span>和<span class="math inline">\(B\)</span>，如果存在一个可逆的<span class="math inline">\(n\times n\)</span>矩阵<span class="math inline">\(C\)</span>使得： <span class="math display">\[A = C^{-1}BC\]</span> 则称<span class="math inline">\(A\)</span>和<span class="math inline">\(B\)</span>为相似矩阵。回到同余式<span class="math inline">\(x \equiv a \pmod{p}\)</span>，我们能发现<span class="math inline">\(x\)</span>与<span class="math inline">\(a\)</span>是<strong>相似数</strong>吗？建议读者在此处暂停阅读，自己思考一段时间。</p>
+<p>继续刚才的问题，对于整数<span class="math inline">\(a\)</span>，在可逆矩阵的启发下，对应的<strong>可逆数</strong>（与相似矩阵的可逆矩阵对应）难道不应该是模<span class="math inline">\(p\)</span>下互为乘法逆元的整数<span class="math inline">\(c\)</span>和<span class="math inline">\(c^{-1}\)</span>吗？也就是说，对任意的<span class="math inline">\(c\in \mathbb{N}\)</span>，如果<span class="math inline">\(gcd(c,p)=1\)</span>，则存在唯一乘法逆元<span class="math inline">\(c^{-1}\in \mathbb{N}\)</span>，使得<span class="math inline">\(c c^{-1} \equiv 1 \pmod{p}\)</span>。如果<span class="math inline">\(x = c c^{-1} a\)</span>，称整数<span class="math inline">\(x\)</span>和<span class="math inline">\(a\)</span>相似。为什么相似，因为<span class="math inline">\(x\)</span>和<span class="math inline">\(a\)</span>模<span class="math inline">\(p\)</span>同余，且不等。注意，给定<span class="math inline">\(a\)</span>，可以构造多个不同的<span class="math inline">\(x\)</span>与之相似。</p>
+<p>对于满足两个同余式<span class="math inline">\(x \equiv a \pmod{p}\)</span>和<span class="math inline">\(x \equiv b \pmod{q}\)</span>的解<span class="math inline">\(x\)</span>，大致形式应该是既与<span class="math inline">\(a\)</span>相似又与<span class="math inline">\(b\)</span>相似。 分别相似并不难构造，难点是同时满足<strong>相似性</strong>。比如令<span class="math inline">\(x = c_1 c_1^{-1}a + c_2c_2^{-1}b\)</span>，其中<span class="math inline">\(c_1 c_1^{-1} \equiv 1 \pmod{p}\)</span>， <span class="math inline">\(c_2 c_2^{-1} \equiv 1 \pmod{q}\)</span>。现在<span class="math inline">\(x\)</span>模<span class="math inline">\(p\)</span>会得到<span class="math inline">\(a\)</span>，但是$ c_2 c_2^{-1} b$多出来的部分不知道是什么，不大可能是<span class="math inline">\(0\)</span>。<span class="math inline">\(x\)</span>模<span class="math inline">\(q\)</span>会得到<span class="math inline">\(b\)</span>， 但是又多出了<span class="math inline">\(c_1 c_1^{-1}a\)</span>。怎么解决？也就是说，在模<span class="math inline">\(p\)</span>（或者模<span class="math inline">\(q\)</span>）的同时要使那些讨厌的部分<strong>消失</strong>。怎么能做到？ 建议读者在此处暂停阅读，自己思考一段时间。</p>
+<p>相信答案并不难得到。如果把<span class="math inline">\(c_2c_2^{-1}b\)</span>这一项中的<span class="math inline">\(c_2\)</span>人为设置为<span class="math inline">\(p\)</span>，在模<span class="math inline">\(p\)</span>的时候，这一项就被消去了。 同理，把<span class="math inline">\(c_1c_1^{-1}a\)</span>这一项中的<span class="math inline">\(c_1\)</span>人为设置为<span class="math inline">\(q\)</span>即可。这也大致解释了，为什么定理的条件需要<span class="math inline">\(p\)</span>与<span class="math inline">\(q\)</span>互素。 如果你想出来了，恭喜你，请看以下证明。以下定理与证明都是教科书式的东西，如果懂了可以跳过，没有什么特别的内容。</p>
+<h4 id="中国剩余定理的证明">中国剩余定理的证明</h4>
+<p>使用构造法。因为<span class="math inline">\(p\)</span>与<span class="math inline">\(q\)</span>互素，则存在<span class="math inline">\(p^{-1}\)</span>和<span class="math inline">\(q^{-1}\)</span> 分别使得<span class="math inline">\(p p^{-1} \equiv 1 \pmod{q}\)</span>和<span class="math inline">\(qq^{-1} \equiv 1 \pmod{p}\)</span>。 令整数<span class="math inline">\(x\)</span>为： <span class="math display">\[ x = a q q^{-1} + b p p^{-1} \]</span> 容易验证，<span class="math inline">\(x\)</span>同时满足两个同余式。最后需要证明在模<span class="math inline">\(n = pq\)</span>情况下，<span class="math inline">\(x\)</span>是唯一解。即需要证明如果存另一个解，它也必然与<span class="math inline">\(x\)</span>模<span class="math inline">\(n\)</span>同余。假设<span class="math inline">\(\exists y \neq x\)</span>是另一个解，则存在<span class="math inline">\(t \in \mathbb{N}\)</span>使得<span class="math inline">\((y - x ) = tp\)</span>。此时是把<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>理解为<span class="math inline">\(a + kp\)</span>的形式。类似，如果把<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>理解为<span class="math inline">\(b + kq\)</span>的形式，则存在<span class="math inline">\(s \in \mathbb{N}\)</span>使得<span class="math inline">\((y - x ) = sq\)</span>。因为<span class="math inline">\(p\)</span>与<span class="math inline">\(q\)</span>互素，则存在某个<span class="math inline">\(k \in \mathbb{N}\)</span>，使得<span class="math inline">\((y - x) = kpq\)</span>。因此，<span class="math inline">\(y \equiv x \pmod{n}\)</span>。证完！</p>
+<h4 id="中国剩余定理--推广版">中国剩余定理--推广版</h4>
+<p>设<span class="math inline">\(m_1, m_2, \cdots, m_n\)</span>是两两互素的整数，对以下<span class="math inline">\(n\)</span>个同余式的同余方程组 <span class="math display">\[\begin{eqnarray*} x &amp;\equiv&amp; a_1 \pmod{m_1}\\
+      &amp;\cdots&amp;  \\
+      x  &amp;\equiv&amp;  a_n \pmod{m_n}\end{eqnarray*}\]</span> 存在模<span class="math inline">\(M\)</span>的唯一解，其中<span class="math inline">\(M = m_1 m_2 \cdots m_n\)</span>。</p>
+<h4 id="中国剩余定理--推广版的证明">中国剩余定理--推广版的证明</h4>
+<p>构造法。令<span class="math inline">\(M= \prod_{i = 1}^{n} m_i\)</span>，记<span class="math inline">\(b_i = M/m_i\)</span>。 存在<span class="math inline">\(b_i ^{-1}\)</span>使得<span class="math inline">\(b_i b_i ^{-1} \equiv 1 \pmod{m_i}\)</span>。则 <span class="math display">\[x = \sum_{i=1}^{n} a_i b_i b_i^{-1}\pmod{M}\]</span> 是方程组的唯一解。</p>
+<h3 id="斌头剩余定理">斌头剩余定理</h3>
+<p>本博客有意思的部分开始了！或者也可以说是<strong>最没意思</strong>的部分，因为以下内容不会出现在标准教科书当中。稍微把中国剩余定理的要求增强一点点，要求同余方程组的模数分别是不同的素数，然后可以继续大开脑洞，请跟上思路。</p>
+<p>在证明中国剩余定理的时候我们问：给定<span class="math inline">\(a\)</span>和<span class="math inline">\(p\)</span>，找一个值<span class="math inline">\(a&#39;\)</span>，使得 <span class="math display">\[ a a&#39; \equiv a \pmod{p}\]</span> 利用乘法逆元构造一个<span class="math inline">\(1\)</span>并不是唯一选择。<strong>费尔马小定理</strong>告诉我们，如果<span class="math inline">\(p\)</span>是素数，存在<span class="math inline">\(c\in \mathbb{Z}\)</span>且<span class="math inline">\(gcd(c,p)=1\)</span>使得： <span class="math display">\[ c^{p-1} \equiv 1 \pmod{p}\]</span> 所以，使用某个数<span class="math inline">\(b\)</span>的<span class="math inline">\(p-1\)</span>次方也能构造出一个<span class="math inline">\(a\)</span>的相似数。那么，构造出来的<span class="math inline">\(x\)</span>大致可以是这个形式： <span class="math display">\[a c_1^{p-1} + bc_2^{q-1}\]</span> 请问，<span class="math inline">\(c_1\)</span>和<span class="math inline">\(c_2\)</span>分别选择什么可以使得同余方程组得到满足呢？</p>
+<p>有了以上的经验，答案很容易想到：分别取<span class="math inline">\(q\)</span>和<span class="math inline">\(p\)</span>即可。于是我们很可能会得到一个<strong>斌头剩余定理</strong>。</p>
+<h4 id="斌头剩余定理--初始化版本">斌头剩余定理--初始化版本</h4>
+<p>设<span class="math inline">\(p\)</span>和<span class="math inline">\(q\)</span>是不等的两个素数，<span class="math inline">\(n = pq\)</span>。对任意的<span class="math inline">\(a \in \mathbb{Z}_p\)</span>和<span class="math inline">\(b \in \mathbb{Z}_q\)</span>，存在 唯一解<span class="math inline">\(x\)</span>，<span class="math inline">\(0 \leq x &lt; n\)</span>使得： <span class="math display">\[\begin{eqnarray*}x &amp;\equiv&amp; a \pmod{p}\\
+x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inline">\(x = (a q^{p-1} + b p^{q-1}) \bmod{n}\)</span>。</p>
+<p>请验证该定理是否成立？对了，这里唯一性还需要证明吗？不需要，唯一性与<span class="math inline">\(x\)</span>的构造无关。</p>
+<p>故事还没有完，因为以上假设<span class="math inline">\(p\)</span>和<span class="math inline">\(q\)</span>是不等的两个素数，这要求比中国剩余定理还差一步的距离。如果使用中国剩余定理的标准设定，设<span class="math inline">\(p\)</span>和<span class="math inline">\(q\)</span>是不等的且互素的整数，斌头剩余定理就失败了！怎么挽救呢？费尔马小定理是什么定理的特例？欧拉定理！哇哦，欧拉挽救了斌头。欧拉定理说的是，如果<span class="math inline">\(gcd(p,q)= 1\)</span>，则：</p>
+<p><span class="math display">\[q^{\phi(p)} \equiv 1 \pmod{p}\]</span></p>
+<p><span class="math inline">\(\phi\)</span>是欧拉函数。所以，相似数的构造可以使用欧拉定理这个<span class="math inline">\(1\)</span>。</p>
+<h4 id="斌头剩余定理--最终版">斌头剩余定理--最终版</h4>
+<p>设<span class="math inline">\(p\)</span>和<span class="math inline">\(q\)</span>是不等的且互素的整数，<span class="math inline">\(n = pq\)</span>。对任意的<span class="math inline">\(a \in \mathbb{Z}_p\)</span>和<span class="math inline">\(b \in \mathbb{Z}_q\)</span>，存在 唯一解<span class="math inline">\(x\)</span>，<span class="math inline">\(0 \leq x &lt; n\)</span>使得： <span class="math display">\[\begin{eqnarray*}x &amp;\equiv&amp; a \pmod{p}\\
+x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inline">\(x = (a q^{\phi(p)} + b p^{\phi(q)}) \bmod{n}\)</span>。</p>
+<h4 id="请读者论证">请读者论证</h4>
+<ul>
+<li><p>斌头剩余定理是正确的。请编程实现相关算法并计算。</p></li>
+<li><p>斌头剩余定理实在是没有用处的定理。请说明理由。</p></li>
+<li><p>斌头剩余定理能有效帮助大家记忆中国剩余定理，无需理由！</p></li>
+</ul>
+<h3 id="中国剩余定理--抽象代数的角度">中国剩余定理--抽象代数的角度</h3>
+<p>中国剩余定理是一种高效的工具，在特定的时候，它也是一种抽象的表达，是从代数的角度认识某些数字系统的方法。在很多情况下，当我们说“哦，这是中国剩余定理!”的时候，我们并不一定在说“这里有一种高效的计算方法”，而往往是说“这类数值可看为具有这样的形式”。从抽象代数的角度去看CRT，就是学习如何把CRT看为一种“语言”。为避免本文过长，就留待以后再说了。</p>
+<h3 id="总结">总结</h3>
+<p>中华文化源远流长，其中孙子定理又称中国剩余定理是这种文化里的一颗闪亮的明星。中国剩余定理与中国的关系就好比超奇异椭圆曲线与奇异的关系一样密切。中国剩余定理是中国的！</p>
+<p>懂中国剩余定理的人实在很多，但是懂斌头剩余定理的就不见诸科技文献报道，实在可惜，于是就有了这篇博客。正如博客里面已经论述，<strong>斌头剩余定理是在是没有用处的定理</strong>。在此只能道歉，“老师教了一堆没用的东西”这句话在此有效。学习嘛，无非就是发现乐趣，没用就没用吧。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E8%AE%BA%E4%B8%8E%E4%BB%A3%E6%95%B0/" rel="tag"># 数论与代数</a>
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/12/sage/" rel="prev" title="SageMath-- a free open-source mathematics software system">
+      <i class="fa fa-chevron-left"></i> SageMath-- a free open-source mathematics software system
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解一元同余方程组"><span class="nav-number">2.</span> <span class="nav-text">求解一元同余方程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中国剩余定理--数论角度"><span class="nav-number">3.</span> <span class="nav-text">中国剩余定理--数论角度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中国剩余定理"><span class="nav-number">3.1.</span> <span class="nav-text">中国剩余定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中国剩余定理的证明"><span class="nav-number">3.2.</span> <span class="nav-text">中国剩余定理的证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中国剩余定理--推广版"><span class="nav-number">3.3.</span> <span class="nav-text">中国剩余定理--推广版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中国剩余定理--推广版的证明"><span class="nav-number">3.4.</span> <span class="nav-text">中国剩余定理--推广版的证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#斌头剩余定理"><span class="nav-number">4.</span> <span class="nav-text">斌头剩余定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#斌头剩余定理--初始化版本"><span class="nav-number">4.1.</span> <span class="nav-text">斌头剩余定理--初始化版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#斌头剩余定理--最终版"><span class="nav-number">4.2.</span> <span class="nav-text">斌头剩余定理--最终版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请读者论证"><span class="nav-number">4.3.</span> <span class="nav-text">请读者论证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中国剩余定理--抽象代数的角度"><span class="nav-number">5.</span> <span class="nav-text">中国剩余定理--抽象代数的角度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bintou Wang</p>
+  <div class="site-description" itemprop="description">Too simple and sometimes naive.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bintou Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : '8Qp5Fx8fw61ESO3OcEpyENdz-gzGzoHsz',
+      appKey     : 'xp6jjm9PQWBrUryS0xVGCwV9',
+      placeholder: "Free to write...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
