@@ -486,7 +486,7 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-30 16:17:02" itemprop="dateModified" datetime="2020-06-30T16:17:02+08:00">2020-06-30</time>
+                <time title="Modified: 2020-07-30 10:26:57" itemprop="dateModified" datetime="2020-07-30T10:26:57+08:00">2020-07-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -556,7 +556,7 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
 <p>但是，这些曲线还不是我们最关心的，我们更关心的是，如果<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>落在有限域<span class="math inline">\(F\)</span>上的情形。本文主要考虑的有限域是素域<span class="math inline">\(F_p\)</span>，<span class="math inline">\(p\)</span>是素数。因为我大部分的学生对有限域的概念比较陌生，而恰巧他们都<del>精通</del> <em>略微了解</em>有限群。于是，我这样说，设<span class="math inline">\(a, b \in Z_p^*\)</span>，<span class="math inline">\(p\)</span>是一个素数。有限域<span class="math inline">\(F_p\)</span>比<span class="math inline">\(Z_p^*\)</span>多了一个加法(<span class="math inline">\(Z_p\)</span>是加法群啊！)和<span class="math inline">\(0\)</span>元，仅此而已，不要慌！其实是我很慌......</p>
 <p>比如，我们运行以下代码。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; 137 #p是一个素数</span><br><span class="line">sage: F &#x3D; GF(p) #一种有限域，也可以用 F &#x3D; FiniteField(p)命令</span><br><span class="line">sage: E137 &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: show(plot(E137, hue&#x3D;.9))</span><br></pre></td></tr></table></figure> <img src="/2020/04/08/ecc/ec137.JPG" alt="有限域GF(137)上的椭圆曲线"></p>
 <p>这幅图告诉我们，原来椭圆曲线所谓的“曲线”既不“曲”，也不成线，而是离散点的集合。到底有多少个点呢？这是椭圆曲线研究关心的大问题。对我们而言，只需要知道以上曲线大概的点数即可。可以使用以下命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage: E137.points()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage: len(E137.points()）</span><br></pre></td></tr></table></figure>
 <h2 id="椭圆曲线群及其基本运算">椭圆曲线群及其基本运算</h2>
 <p>看到这里，你至少知道椭圆曲线就是一堆”乱七八糟“点的集合，这有什么用呢？暂时还没什么用，直到我们说，椭圆曲线上的点在加法上成群。首先，我们再一次给出椭圆曲线的定义。</p>
 <blockquote>
@@ -677,7 +677,7 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-03 22:04:43" itemprop="dateModified" datetime="2020-05-03T22:04:43+08:00">2020-05-03</time>
+                <time title="Modified: 2024-12-10 11:35:14" itemprop="dateModified" datetime="2024-12-10T11:35:14+08:00">2024-12-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -763,7 +763,7 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
 <h2 id="sidh构造的细化版本">SIDH构造的细化版本</h2>
 <p>为了满足Alice在没有Bob的秘密信息的情况下能计算出<span class="math inline">\(E_{BA}\)</span> 的要求，SIDH需要使用更多的参数设计和相关计算。算法增加描述如下：</p>
 <h3 id="sidh参数设计">SIDH参数设计</h3>
-<p>首先，选择超奇异椭圆曲线<span class="math inline">\(E\)</span>作为公开参数。然后Alice随机选择两个元素<span class="math inline">\(P_A, Q_A \in E\)</span>，并公开作为自己的公共参数。同样，Bob也随机选择两个元素$ P_B, Q_B E$ 并公开。</p>
+<p>首先，选择超奇异椭圆曲线<span class="math inline">\(E\)</span>作为公开参数。然后Alice随机选择两个元素<span class="math inline">\(P_A, Q_A \in E\)</span>，并公开作为自己的公共参数。同样，Bob也随机选择两个元素<span class="math inline">\(P_B, Q_B \in E\)</span> 并公开。</p>
 <h3 id="alice的操作">Alice的操作</h3>
 <ul>
 <li>随机选择两个整数<span class="math inline">\(s_A\)</span>和<span class="math inline">\(t_A\)</span>作为秘密信息，计算 <span class="math inline">\(R_A = s_A P_A + t_A Q_A\in E\)</span>，并由<span class="math inline">\(R_A\)</span>计算得到一个从<span class="math inline">\(E\)</span>映射到其子群<span class="math inline">\(E_A\)</span>的同源 <span class="math inline">\(\phi_A: E \mapsto E_A\)</span>，这也是Alice的秘密信息；</li>
@@ -781,7 +781,7 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
 <ul>
 <li>注意，此时Alice掌握的信息是<span class="math inline">\(s_A\)</span>，<span class="math inline">\(t_A\)</span>，<span class="math inline">\(R_A\)</span>，<span class="math inline">\(\phi_B(P_A)\)</span> 和 <span class="math inline">\(\phi_B(Q_A)\)</span> ，她想计算得到<span class="math inline">\(\phi_B(R_A)\)</span> 。并且要强调，<span class="math inline">\(\phi_B\)</span> 是一种群同态。</li>
 <li>于是，利用群同态的属性可计算得到：<span class="math inline">\(\phi_B(R_A) = \phi_B(s_A P_A + t_A Q_A) = s_A \phi_B(P_A) + t_A \phi_B(Q_A)\)</span> 。</li>
-<li>根据<span class="math inline">\(\phi_B(R_A)\)</span> 计算<span class="math inline">\(E_{BA}\)</span>。<span class="math inline">\(E_{BA}\)</span>是曲线群<span class="math inline">\(E\)</span> 的子群，是以<span class="math inline">\(\phi_B (R_A)\)</span> 为Kernel的群同态映射到<span class="math inline">\(E\)</span>上的子群。这个群同态也就是Isogeny，这个Isogeny我们记为 $ _{BA}$ 。终于我们明白了什么是<span class="math inline">\(E_{BA}\)</span> ！</li>
+<li>根据<span class="math inline">\(\phi_B(R_A)\)</span> 计算<span class="math inline">\(E_{BA}\)</span>。<span class="math inline">\(E_{BA}\)</span>是曲线群<span class="math inline">\(E\)</span> 的子群，是以<span class="math inline">\(\phi_B (R_A)\)</span> 为Kernel的群同态映射到<span class="math inline">\(E\)</span>上的子群。这个群同态也就是Isogeny，这个Isogeny我们记为 <span class="math inline">\(\phi_{BA}\)</span> 。终于我们明白了什么是<span class="math inline">\(E_{BA}\)</span> ！</li>
 </ul>
 <p>类似地，Bob可以计算子群<span class="math inline">\(E_{AB}\)</span> ：</p>
 <ul>
@@ -803,7 +803,8 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
 <p>本文试图对SIDH算法进行最直观的描述，让初具群论知识的从业者对此算法稍有认识。正因为强调直观、直白，自然忽略了其中许多深入的知识，包括：曲线参数的选取，计算同源的具体算法，为什么SIDH可抗量子攻击等。简而言之，本文旨在抛砖引玉，能引起读者兴趣就足够了，其内涵有限，作为“茶余饭后”的聊资很恰当，但绝不是严肃的科技文献。有兴趣者可在<a href="https://eprint.iacr.org/" target="_blank" rel="noopener">ePrint</a>等网站获取更多的科技论文进行研究。</p>
 <h2 id="致谢">致谢</h2>
 <p>本文内容插图截取自<a href="https://csclub.uwaterloo.ca/~dburbani/work/friendlysidh.pdf" target="_blank" rel="noopener">David Urbanik的文献</a> 。代码源自<a href="https://www.lvh.io/posts/supersingular-isogeny-diffie-hellman-101/" target="_blank" rel="noopener">Lvh的Blog</a>，总算找回这个网站，我撰写的内容则基本与Lvh没关系。</p>
-<p>--</p>
+<h2 id="年注">2024年注</h2>
+<h2 id="sidh算法已经在2022年被攻破参考rober的文献以上内容已经不具有实用价值">SIDH算法已经在2022年被攻破，<a href="https://eprint.iacr.org/2022/1038" target="_blank" rel="noopener">参考Rober的文献</a>，以上内容已经不具有实用价值。</h2>
 
       
     </div>
@@ -923,7 +924,7 @@ x &amp;\equiv&amp; b \pmod{q}\end{eqnarray*}\]</span> 且<span class="math inlin
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

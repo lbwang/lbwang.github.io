@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://lbwang.github.io/2020/04/08/ecc/ec-Add2.JPG">
 <meta property="og:image" content="https://lbwang.github.io/2020/04/08/ecc/ec-InfPot.JPG">
 <meta property="article:published_time" content="2020-04-08T02:45:34.000Z">
-<meta property="article:modified_time" content="2020-06-30T08:17:02.653Z">
+<meta property="article:modified_time" content="2020-07-30T02:26:57.683Z">
 <meta property="article:author" content="Bintou Wang">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="椭圆曲线">
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-30 16:17:02" itemprop="dateModified" datetime="2020-06-30T16:17:02+08:00">2020-06-30</time>
+                <time title="Modified: 2020-07-30 10:26:57" itemprop="dateModified" datetime="2020-07-30T10:26:57+08:00">2020-07-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,7 +260,7 @@
 <p>但是，这些曲线还不是我们最关心的，我们更关心的是，如果<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>落在有限域<span class="math inline">\(F\)</span>上的情形。本文主要考虑的有限域是素域<span class="math inline">\(F_p\)</span>，<span class="math inline">\(p\)</span>是素数。因为我大部分的学生对有限域的概念比较陌生，而恰巧他们都<del>精通</del> <em>略微了解</em>有限群。于是，我这样说，设<span class="math inline">\(a, b \in Z_p^*\)</span>，<span class="math inline">\(p\)</span>是一个素数。有限域<span class="math inline">\(F_p\)</span>比<span class="math inline">\(Z_p^*\)</span>多了一个加法(<span class="math inline">\(Z_p\)</span>是加法群啊！)和<span class="math inline">\(0\)</span>元，仅此而已，不要慌！其实是我很慌......</p>
 <p>比如，我们运行以下代码。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sage: p &#x3D; 137 #p是一个素数</span><br><span class="line">sage: F &#x3D; GF(p) #一种有限域，也可以用 F &#x3D; FiniteField(p)命令</span><br><span class="line">sage: E137 &#x3D; EllipticCurve(F, [F.random_element(), F.random_element()])</span><br><span class="line">sage: show(plot(E137, hue&#x3D;.9))</span><br></pre></td></tr></table></figure> <img src="/2020/04/08/ecc/ec137.JPG" alt="有限域GF(137)上的椭圆曲线"></p>
 <p>这幅图告诉我们，原来椭圆曲线所谓的“曲线”既不“曲”，也不成线，而是离散点的集合。到底有多少个点呢？这是椭圆曲线研究关心的大问题。对我们而言，只需要知道以上曲线大概的点数即可。可以使用以下命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage: E137.points()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage: len(E137.points()）</span><br></pre></td></tr></table></figure>
 <h2 id="椭圆曲线群及其基本运算">椭圆曲线群及其基本运算</h2>
 <p>看到这里，你至少知道椭圆曲线就是一堆”乱七八糟“点的集合，这有什么用呢？暂时还没什么用，直到我们说，椭圆曲线上的点在加法上成群。首先，我们再一次给出椭圆曲线的定义。</p>
 <blockquote>
@@ -468,7 +468,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
